@@ -35,11 +35,17 @@
 					<td><%=lista.get(i).getCategoria() %></td>
 					<td><%=lista.get(i).getValor() %></td>
 					<td><%=lista.get(i).getQuantidade() %></td>
-					<td><a href="javascript: confirmarExclusao(<%=lista.get(i).getId()%>)">Excluir</a></td>
+					<td>
+						<a href="javascript: confirmarExclusao(<%=lista.get(i).getId()%>)">Excluir</a>
+						<a href="select?id=<%=lista.get(i).getId()%>">Editar</a>
+					</td>
+					
 				</tr>
 				<%} %>
 		</tbody>
 	</table>
+	<p>
+	<a href="create">Cadastrar Aluno</a>
 	<p>
 	<a href="home">Sair</a>
 	<script src="scripts/confirmador.js"></script>

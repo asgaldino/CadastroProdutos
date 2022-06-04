@@ -1,7 +1,7 @@
 package model;
 
 public class JavaBeans {
-	private int id;
+	private String id;
 	private String nome;
 	private String valor;
 	private String codigo;	
@@ -13,7 +13,7 @@ public class JavaBeans {
 		super();
 	}
 	//constructor using fields
-	public JavaBeans(int id, String codigo, String nome, String categoria, String valor, String quantidade) {
+	public JavaBeans(String id, String codigo, String nome, String categoria, String valor, String quantidade) {
 		super();
 		this.id = id;		
 		this.nome = nome;
@@ -22,10 +22,10 @@ public class JavaBeans {
 		this.categoria = categoria;
 		this.quantidade = quantidade;
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getNome() {
