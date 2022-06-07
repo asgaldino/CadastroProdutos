@@ -79,7 +79,7 @@ public class Controller extends HttpServlet {
 			throws ServletException, IOException {
 		
 		produto.setNome(request.getParameter("nome"));
-		produto.setValor(request.getParameter("valor"));
+		produto.setValor(request.getParameter("valor").replaceAll(",", "."));
 		produto.setCodigo(request.getParameter("codigo"));
 		produto.setCategoria(request.getParameter("categoria"));
 		produto.setQuantidade(request.getParameter("quantidade"));
@@ -127,7 +127,7 @@ public class Controller extends HttpServlet {
 		
 		produto.setId(request.getParameter("id"));
 		produto.setNome(request.getParameter("nome"));
-		produto.setValor(request.getParameter("valor"));
+		produto.setValor(request.getParameter("valor".replaceAll(",", ".")));
 		produto.setCodigo(request.getParameter("codigo"));
 		produto.setCategoria(request.getParameter("categoria"));
 		produto.setQuantidade(request.getParameter("quantidade"));

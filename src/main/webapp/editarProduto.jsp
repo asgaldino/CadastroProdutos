@@ -5,9 +5,11 @@
 <head>
 <meta charset="utf-8">
 <title>Editar - Produto</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<h1>Editar Produto</h1>
+	<div class="container4">
 	<form name="frmCadastro" action="update">
 		<table>
 			<tr>
@@ -46,5 +48,7 @@
 	<p>
 		<a href="home">Sair</a>
 		<script src="scripts/validador.js"></script>
+</p>
+</div>
 </body>
 </html>
