@@ -13,17 +13,19 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("produt
 <meta charset="utf-8">
 <title>Lista de Produtos</title>
 <link rel="stylesheet" href="style.css">
+<script src="scripts/confirmador.js"></script>
 </head>
 <body>
 	<main>
 		<div>
 			<h1>Lista de Produtos Cadastrados</h1>
 		</div>
-		<div class="container5">
+		<div class="container4">
 			<h2>Produtos</h2>
+			<form name= "" action="">
 			<div class="underline2"></div>
 			<div>
-				<table class="tabelaProduto">
+				<table>
 					<thead>
 						<tr>
 							<th>ID</th>
@@ -47,10 +49,10 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("produt
 							<td><%=lista.get(i).getQuantidade()%></td>
 							<td class="botProdutos">
 								<a href="javascript: confirmarExclusao(<%=lista.get(i).getId()%>)">
-									<input type="button" value="Excluir" name="excluir">
+									<input class="exProdutos" type="button" value="Excluir" name="excluir">
 								</a>
 								<a href="select?id=<%=lista.get(i).getId()%>">
-									<input type="button" value="Editar" name="editar">	
+									<input class="edProdutos" type="button" value="Editar" name="editar">	
 								</a>
 							</td>
 						</tr>
@@ -60,14 +62,18 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("produt
 
 					</tbody>
 				</table>
-				<p>
-					<a href="create">Cadastrar Produto</a>
-				</p>
-				<p>
-					<a href="home">Sair</a>
-					<script src="scripts/confirmador.js"></script>
-				</p>
+				<div>
+					<a href="create">
+						<input type="button" value="Cadastrar Produto">
+					</a>
+				</div>
+				<div>
+					<a href="home">
+						<input type="button" value="Sair">
+					</a>					
+				</div>
 			</div>
+			</form>
 		</div>
 	</main>
 </body>
