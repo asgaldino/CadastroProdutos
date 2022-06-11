@@ -48,9 +48,6 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("produt
 							<td><%=lista.get(i).getValor()%></td>
 							<td><%=lista.get(i).getQuantidade()%></td>
 							<td class="botProdutos">
-								<a href="javascript: confirmarExclusao(<%=lista.get(i).getId()%>)">
-									<input class="exProdutos" type="button" value="Excluir" name="excluir">
-								</a>
 								<a href="select?id=<%=lista.get(i).getId()%>">
 									<input class="edProdutos" type="button" value="Editar" name="editar">	
 								</a>

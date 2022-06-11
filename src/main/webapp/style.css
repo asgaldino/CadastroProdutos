@@ -16,7 +16,7 @@ body{
     align-items: center;
     justify-content: center;
 }
-div.container2{
+div.container{
     background: white;
     max-width: 320px;
     min-width: 40vw;
@@ -25,7 +25,7 @@ div.container2{
     box-shadow: 5px, 5px, 15px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
 }
-div.container4{
+div.container2{
     background: white;
     min-width: 40vw;
     padding: 2rem;

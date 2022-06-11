@@ -15,7 +15,7 @@ import model.BancoDados;
 import model.DAO;
 import model.JavaBeans;
 
-@WebServlet(urlPatterns = { "/home", "/create", "/insert", "/read", "/delete", "/select", "/update" })
+@WebServlet(urlPatterns = { "/home", "/create", "/insert", "/read", "/delete", "/select", "/update", "/editarPg", "/deletePg" })
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	DAO dao = new DAO();
@@ -40,11 +40,9 @@ public class Controller extends HttpServlet {
 
 		if (action.equals("/home")) {
 			response.sendRedirect("index.html");
-
 		}
 		else if (action.equals("/create")) {
 			response.sendRedirect("cadastro.html");
-
 		}
 		else if (action.equals("/insert")) {
 			adicionarProduto(request, response);
@@ -53,13 +51,19 @@ public class Controller extends HttpServlet {
 			exibirProdutos(request, response);
 		}
 		else if (action.equals("/delete")) { 
-			excluirProduto(request, response);
+			deleteProduto(request, response);
 		}
 		else if (action.equals("/select")) { 
 			listarProduto(request, response);
 		}
 		else if (action.equals("/update")) { 
 			atualizarProduto(request, response);
+		}
+		else if (action.equals("/editarPg")) {
+			editarProduto(request, response);
+		}
+		else if (action.equals("/deletePg")) {
+			excluirProduto(request, response);
 		}
 
 	}
@@ -90,14 +94,26 @@ public class Controller extends HttpServlet {
 	}
 	protected void exibirProdutos(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		ArrayList<JavaBeans> lista = dao.listarProdutos();
-
 		request.setAttribute("produtos", lista);
 		RequestDispatcher rdp = request.getRequestDispatcher("produtos.jsp");
 		rdp.forward(request, response);
 	}
+	protected void editarProduto(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		ArrayList<JavaBeans> lista = dao.listarProdutos();
+		request.setAttribute("produtos", lista);
+		RequestDispatcher rdp = request.getRequestDispatcher("editarPg.jsp");
+		rdp.forward(request, response);
+	}
 	protected void excluirProduto(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		ArrayList<JavaBeans> lista = dao.listarProdutos();
+		request.setAttribute("produtos", lista);
+		RequestDispatcher rdp = request.getRequestDispatcher("excluirProduto.jsp");
+		rdp.forward(request, response);
+	}
+	protected void deleteProduto(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String id = request.getParameter("id");
 		produto.setId(id);
