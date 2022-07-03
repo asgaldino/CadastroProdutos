@@ -11,29 +11,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.BancoDados;
 import model.DAO;
 import model.JavaBeans;
 
-@WebServlet(urlPatterns = { "/home", "/create", "/insert", "/read", "/delete", "/select", "/update", "/editarPg", "/deletePg" })
+@WebServlet(urlPatterns = { "/home", "/create", "/insert", "/read", "/delete", "/select", "/update",
+		"/editarPg", "/deletePg", "/selectPg", "/selectPd" })
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	DAO dao = new DAO();
 	JavaBeans produto = new JavaBeans();
-	//BancoDados bd = new BancoDados();
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public Controller() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getServletPath();
@@ -65,20 +52,13 @@ public class Controller extends HttpServlet {
 		else if (action.equals("/deletePg")) {
 			excluirProduto(request, response);
 		}
-
+		else if (action.equals("/selectPg")) {
+			response.sendRedirect("buscarProduto.html");
+		}
+		else if (action.equals("/selectPd")) { 
+			exibirProduto(request, response);
+		}
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	/*
-	 * protected void doPost(HttpServletRequest request, HttpServletResponse
-	 * response) throws ServletException, IOException {
-	 * 
-	 * response.getWriter().append("Served at: ").append(request.getContextPath());
-	 * }
-	 */
 	protected void adicionarProduto(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -151,5 +131,12 @@ public class Controller extends HttpServlet {
 		dao.editarProduto(produto);
 
 		response.sendRedirect("read");
+	}
+	protected void exibirProduto(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		ArrayList<JavaBeans> lista = dao.buscarProdutoNome(request);
+		request.setAttribute("produtos", lista);
+		RequestDispatcher rdp = request.getRequestDispatcher("produtos.jsp");
+		rdp.forward(request, response);
 	}
 }

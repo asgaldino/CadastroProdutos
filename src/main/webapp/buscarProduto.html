@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de Produtos</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<main>
+		<div>
+			<h1>Pesquisa de Produtos</h1>
+		</div>
+		<div class="container2">
+			<h2>Buscar Produto</h2>
+			<form name="frmPesquisa" action = "selectPd">
+				<div class="input-geral">
+					<h3>Nome:</h3>
+					<h6 class = "asterisco">*</h6>
+					<input type="text" name="nome" placeholder="Digite o Nome do Produto" required>
+					<div class="underline"></div>
+				</div>
+				<div>
+					<input type="button" value="Buscar" name="buscar" onclick="validarPd()">
+					<a href="home">
+					<input type="button" value="Cancelar" name="cancelar">
+					</a>
+				</div>
+		</form>
+		</div>
+	</main>
+	<script src="scripts/validador.js"></script>
+</body>
+</html>

@@ -79,11 +79,6 @@ form{
 	font-size: 1rem;
 	color: red;
 }
-/*
-form .input-login:first-child{
-    margin-bottom: 1rem;
-}
-*/
 form input[type="submit"]{
     margin-top: 2rem;
     padding: 0.6rem;

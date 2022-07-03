@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class DAO {
 	private String driver = "com.mysql.cj.jdbc.Driver";
 
@@ -15,7 +17,6 @@ public class DAO {
 
 	private String password = "senhadobanco1";
 
-	// conectar
 	private Connection conectar() {
 		Connection con = null;
 		try {
@@ -31,17 +32,16 @@ public class DAO {
 	}
 
 	public void inserirProduto(JavaBeans produto) {
-		String insert = "INSERT INTO Produto (id, codigo, nome, categoria, valor, quantidade)  values (?,?,?,?,?,?)";
+		String insert = "INSERT INTO Produto (codigo, nome, categoria, valor, quantidade)  values (?,?,?,?,?)";
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(insert);
 
-			pst.setString(1, null);
-			pst.setString(2, produto.getCodigo());
-			pst.setString(3, produto.getNome());
-			pst.setString(4, produto.getCategoria());
-			pst.setString(5, produto.getValor());
-			pst.setString(6, produto.getQuantidade());
+			pst.setString(1, produto.getCodigo());
+			pst.setString(2, produto.getNome());
+			pst.setString(3, produto.getCategoria());
+			pst.setString(4, produto.getValor());
+			pst.setString(5, produto.getQuantidade());
 
 			pst.executeUpdate();
 			con.close();
@@ -138,5 +138,33 @@ public class DAO {
 			System.out.println(e);
 		}
 	}
+	public ArrayList<JavaBeans> buscarProdutoNome(HttpServletRequest request) {
+		ArrayList<JavaBeans> produtos = new ArrayList<>();
+		String nomeLk = (request.getParameter("nome"));
+		String select = "SELECT * FROM Produto where nome like '%"+nomeLk+"%'order by nome";
 
+		try {
+			Connection con = conectar();
+			PreparedStatement pst = con.prepareStatement(select);
+			ResultSet rst = pst.executeQuery();
+
+			while (rst.next()) {
+				String id = rst.getString(1);
+				String codigo = rst.getString(2);
+				String nome = rst.getString(3);
+				String categoria = rst.getString(4);
+				String valor = rst.getString(5);
+				String quantidade = rst.getString(6);
+
+				produtos.add(new JavaBeans(id, codigo, nome, categoria, valor, quantidade));
+			}
+			con.close();
+			return produtos;
+			
+		} catch (Exception e) {
+			System.out.println("Operação não executada");
+			System.out.println(e);
+			return null;
+		}
+	}
 }
